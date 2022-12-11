@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,8 +14,10 @@ import androidx.annotation.Nullable;
 public class KashishAdapter extends ArrayAdapter<String> {//mtlb ArrayAdapter hi banana hai hume, bas thoda modify karke
 
 private String[] arr;
+private final Context context;
     public KashishAdapter(@NonNull Context context, int resource, @NonNull String[] arr) { //Constructor suggested by Android Studio which takes String array as input
         super(context, resource, arr); //calls the constructor of ArrayAdapter Class
+        this.context= context;
         this.arr= arr; //'this.arr' String array is used below while setting text in convertView view. It is defined above.
     }
 //    @Nullable
@@ -29,6 +32,12 @@ private String[] arr;
         convertView = LayoutInflater.from(getContext()).inflate(R.layout.my_kashish_layout, parent, false);//LayoutInflater tumhe 'findViewById' use karne deta hai layout pe
         TextView t = convertView.findViewById(R.id.textView1); //textView1 is id of 'textview' present in 'my_kashish_layout' layout defined by me
         t.setText(arr[position]); //'position' is position of textView in 'my_kashish_layout'
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,"You clicked on returned view item number "+position, Toast.LENGTH_SHORT).show(); //using the context present in 'MainActivity.java' file
+            }
+        });
         return convertView; //Layout has been converted into a View and can be used in ListView
     }
 }
