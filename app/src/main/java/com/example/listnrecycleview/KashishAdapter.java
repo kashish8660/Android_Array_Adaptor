@@ -24,7 +24,7 @@ private String[] arr;
 //    }
 //    @NonNull
 //    @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) //getView function is never called by any object of 'KashishAdaptor'
     {
         convertView = LayoutInflater.from(getContext()).inflate(R.layout.my_kashish_layout, parent, false);//LayoutInflater tumhe 'findViewById' use karne deta hai layout pe
         TextView t = convertView.findViewById(R.id.textView1); //textView1 is id of 'textview' present in 'my_kashish_layout' layout defined by me
